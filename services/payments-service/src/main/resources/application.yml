@@ -17,6 +17,13 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
+payments:
+  simulate:
+    timeout-enabled: ${PAYMENTS_TIMEOUT_ENABLED:true}
+    timeout-ms: ${PAYMENTS_TIMEOUT_MS:3000}
+    timeout-rate: ${PAYMENTS_TIMEOUT_RATE:0.30}
+    failure-rate: ${PAYMENTS_FAILURE_RATE:0.15}
+
 management:
   endpoints:
     web:
