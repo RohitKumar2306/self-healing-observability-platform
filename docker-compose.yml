@@ -12,7 +12,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
       - ./scripts/init-databases.sql:/docker-entrypoint-initdb.d/init-databases.sql
     ports:
-      - "5432:5432"
+      - "5433:5432"
     networks:
       - observability-net
     healthcheck:
