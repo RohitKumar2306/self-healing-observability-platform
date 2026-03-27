@@ -1,5 +1,7 @@
 package com.observability.inventory.simulator;
 
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +14,8 @@ public class FailureSimulator {
 
     private static final Logger log = LoggerFactory.getLogger(FailureSimulator.class);
 
+    private final MeterRegistry meterRegistry;
+
     @Value("${inventory.simulate.latency-enabled:true}")
     private boolean latencyEnabled;
 
@@ -20,6 +24,10 @@ public class FailureSimulator {
 
     @Value("${inventory.simulate.failure-rate:0.20}")
     private double failureRate;
+
+    public FailureSimulator(MeterRegistry meterRegistry) {
+        this.meterRegistry = meterRegistry;
+    }
 
     public void simulateLatency() {
         if (!latencyEnabled) {
@@ -38,6 +46,7 @@ public class FailureSimulator {
         double roll = ThreadLocalRandom.current().nextDouble();
         if (roll < failureRate) {
             log.warn("Simulating failure: random={} < threshold={}", roll, failureRate);
+            Counter.builder("inventory.failure.simulated.total").register(meterRegistry).increment();
             throw new RuntimeException("Simulated inventory service failure");
         }
     }

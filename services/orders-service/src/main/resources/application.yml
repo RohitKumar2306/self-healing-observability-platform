@@ -21,6 +21,17 @@ orders:
   inventory-service-url: ${INVENTORY_SERVICE_URL:http://inventory-service:8082}
   payments-service-url: ${PAYMENTS_SERVICE_URL:http://payments-service:8083}
 
+otel:
+  exporter:
+    otlp:
+      endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://jaeger:4317}
+  traces:
+    sampler:
+      probability: 1.0
+  resource:
+    attributes:
+      service.name: orders-service
+
 management:
   endpoints:
     web:

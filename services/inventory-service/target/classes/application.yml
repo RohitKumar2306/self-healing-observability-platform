@@ -23,6 +23,17 @@ inventory:
     max-latency-ms: ${INVENTORY_MAX_LATENCY_MS:2000}
     failure-rate: ${INVENTORY_FAILURE_RATE:0.20}
 
+otel:
+  exporter:
+    otlp:
+      endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://jaeger:4317}
+  traces:
+    sampler:
+      probability: 1.0
+  resource:
+    attributes:
+      service.name: inventory-service
+
 management:
   endpoints:
     web:

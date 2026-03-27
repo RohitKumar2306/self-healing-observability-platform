@@ -4,6 +4,8 @@ import com.observability.orders.dto.CreateOrderRequest;
 import com.observability.orders.entity.Order;
 import com.observability.orders.entity.Order.OrderStatus;
 import com.observability.orders.repository.OrderRepository;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,19 +19,25 @@ import java.util.Map;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 public class OrderService {
 
     private static final Logger log = LoggerFactory.getLogger(OrderService.class);
 
     private final OrderRepository orderRepository;
     private final RestTemplate restTemplate;
+    private final MeterRegistry meterRegistry;
 
     @Value("${orders.inventory-service-url:http://inventory-service:8082}")
     private String inventoryServiceUrl;
 
     @Value("${orders.payments-service-url:http://payments-service:8083}")
     private String paymentsServiceUrl;
+
+    public OrderService(OrderRepository orderRepository, RestTemplate restTemplate, MeterRegistry meterRegistry) {
+        this.orderRepository = orderRepository;
+        this.restTemplate = restTemplate;
+        this.meterRegistry = meterRegistry;
+    }
 
     public Order createOrder(CreateOrderRequest request) {
         Order order = Order.builder()
@@ -87,12 +95,14 @@ public class OrderService {
             // Both steps succeeded
             order.setStatus(OrderStatus.CONFIRMED);
             order = orderRepository.save(order);
+            Counter.builder("orders.created.total").tag("status", "CONFIRMED").register(meterRegistry).increment();
             log.info("Order confirmed orderId={}", order.getId());
 
         } catch (Exception e) {
             log.error("Order failed orderId={}, reason={}", order.getId(), e.getMessage());
             order.setStatus(OrderStatus.FAILED);
             order = orderRepository.save(order);
+            Counter.builder("orders.created.total").tag("status", "FAILED").register(meterRegistry).increment();
         }
 
         return order;
