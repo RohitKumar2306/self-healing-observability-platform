@@ -110,6 +110,18 @@ services:
     networks:
       - observability-net
 
+  alertmanager:
+    image: prom/alertmanager:v0.26.0
+    container_name: alertmanager
+    volumes:
+      - ./alerting/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    environment:
+      SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL:-https://hooks.slack.com/services/placeholder}
+    ports:
+      - "9093:9093"
+    networks:
+      - observability-net
+
 networks:
   observability-net:
     driver: bridge
