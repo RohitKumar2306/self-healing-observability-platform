@@ -17,6 +17,12 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
+inventory:
+  simulate:
+    latency-enabled: ${INVENTORY_LATENCY_ENABLED:true}
+    max-latency-ms: ${INVENTORY_MAX_LATENCY_MS:2000}
+    failure-rate: ${INVENTORY_FAILURE_RATE:0.20}
+
 management:
   endpoints:
     web:

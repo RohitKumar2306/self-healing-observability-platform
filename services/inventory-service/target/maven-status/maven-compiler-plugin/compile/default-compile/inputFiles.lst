@@ -1,2 +1,10 @@
+/Users/rohitkumarchintamani/Documents/self-healing-observability-platform/services/inventory-service/src/main/java/com/observability/inventory/repository/InventoryRepository.java
+/Users/rohitkumarchintamani/Documents/self-healing-observability-platform/services/inventory-service/src/main/java/com/observability/inventory/simulator/FailureSimulator.java
+/Users/rohitkumarchintamani/Documents/self-healing-observability-platform/services/inventory-service/src/main/java/com/observability/inventory/init/DataInitializer.java
+/Users/rohitkumarchintamani/Documents/self-healing-observability-platform/services/inventory-service/src/main/java/com/observability/inventory/service/InventoryService.java
+/Users/rohitkumarchintamani/Documents/self-healing-observability-platform/services/inventory-service/src/main/java/com/observability/inventory/controller/InventoryController.java
+/Users/rohitkumarchintamani/Documents/self-healing-observability-platform/services/inventory-service/src/main/java/com/observability/inventory/dto/ReserveRequest.java
+/Users/rohitkumarchintamani/Documents/self-healing-observability-platform/services/inventory-service/src/main/java/com/observability/inventory/entity/InventoryItem.java
 /Users/rohitkumarchintamani/Documents/self-healing-observability-platform/services/inventory-service/src/main/java/com/observability/inventory/controller/HealthController.java
+/Users/rohitkumarchintamani/Documents/self-healing-observability-platform/services/inventory-service/src/main/java/com/observability/inventory/dto/ReserveResponse.java
 /Users/rohitkumarchintamani/Documents/self-healing-observability-platform/services/inventory-service/src/main/java/com/observability/inventory/InventoryApplication.java

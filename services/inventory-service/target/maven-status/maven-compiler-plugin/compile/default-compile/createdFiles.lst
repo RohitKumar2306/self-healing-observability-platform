@@ -1,2 +1,13 @@
+com/observability/inventory/dto/ReserveResponse.class
+com/observability/inventory/init/DataInitializer.class
+com/observability/inventory/entity/InventoryItem.class
+com/observability/inventory/simulator/FailureSimulator.class
 com/observability/inventory/InventoryApplication.class
+com/observability/inventory/dto/ReserveResponse$ReserveResponseBuilder.class
+com/observability/inventory/entity/InventoryItem$InventoryItemBuilder.class
 com/observability/inventory/controller/HealthController.class
+com/observability/inventory/controller/InventoryController.class
+com/observability/inventory/service/InventoryService.class
+com/observability/inventory/dto/ReserveRequest$ReserveRequestBuilder.class
+com/observability/inventory/repository/InventoryRepository.class
+com/observability/inventory/dto/ReserveRequest.class
