@@ -23,6 +23,7 @@ def send_order():
         "customerId": random.choice(CUSTOMER_IDS),
         "productId": random.choice(PRODUCT_IDS),
         "quantity": random.randint(1, 5),
+        "totalAmount": round(random.uniform(9.99, 199.99), 2),
     }
     data = json.dumps(payload).encode()
     req = urllib.request.Request(

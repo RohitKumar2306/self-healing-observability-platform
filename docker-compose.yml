@@ -32,7 +32,7 @@ services:
       DB_NAME: ordersdb
       DB_USERNAME: ${POSTGRES_USER:-postgres}
       DB_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
-      OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4318
     ports:
       - "8081:8081"
     networks:
@@ -55,7 +55,7 @@ services:
       INVENTORY_LATENCY_ENABLED: ${INVENTORY_LATENCY_ENABLED:-true}
       INVENTORY_MAX_LATENCY_MS: ${INVENTORY_MAX_LATENCY_MS:-2000}
       INVENTORY_FAILURE_RATE: ${INVENTORY_FAILURE_RATE:-0.20}
-      OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4318
     ports:
       - "8082:8082"
     networks:
@@ -79,7 +79,7 @@ services:
       PAYMENTS_TIMEOUT_MS: ${PAYMENTS_TIMEOUT_MS:-3000}
       PAYMENTS_TIMEOUT_RATE: ${PAYMENTS_TIMEOUT_RATE:-0.30}
       PAYMENTS_FAILURE_RATE: ${PAYMENTS_FAILURE_RATE:-0.15}
-      OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4318
     ports:
       - "8083:8083"
     networks:
@@ -96,6 +96,7 @@ services:
     ports:
       - "16686:16686"
       - "4317:4317"
+      - "4318:4318"
     networks:
       - observability-net
 
