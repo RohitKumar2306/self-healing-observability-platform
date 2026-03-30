@@ -10,35 +10,35 @@ Built with Spring Boot, Prometheus, Grafana, Jaeger, Alertmanager, and custom Py
 
 ```
                          ┌─────────────────────┐
-                         │   Load Generator     │
-                         │  (Python script)     │
+                         │   Load Generator    │
+                         │  (Python script)    │
                          └─────────┬───────────┘
                                    │ POST /orders
                                    ▼
                          ┌─────────────────────┐
-                         │   Orders Service     │
-                         │     (port 8081)      │
-                         │    [Orchestrator]    │
+                         │   Orders Service    │
+                         │     (port 8081)     │
+                         │    [Orchestrator]   │
                          └────┬───────────┬────┘
                               │           │
               POST /inventory/reserve     POST /payments/charge
                               │           │
                     ┌─────────▼───┐   ┌───▼─────────┐
-                    │  Inventory  │   │  Payments    │
-                    │  Service    │   │  Service     │
-                    │ (port 8082) │   │ (port 8083)  │
-                    │ [Failure    │   │ [Timeout     │
-                    │  Injector]  │   │  Injector]   │
-                    └──────┬──────┘   └──────┬───────┘
+                    │  Inventory  │   │  Payments   │
+                    │  Service    │   │  Service    │
+                    │ (port 8082) │   │ (port 8083) │
+                    │ [Failure    │   │ [Timeout    │
+                    │  Injector]  │   │  Injector]  │
+                    └──────┬──────┘   └──────┬──────┘
                            │                 │
                            └────────┬────────┘
                                     ▼
                           ┌──────────────────┐
-                          │   PostgreSQL 15   │
-                          │   (port 5432)     │
-                          │  ordersdb         │
-                          │  inventorydb      │
-                          │  paymentsdb       │
+                          │   PostgreSQL 15  │
+                          │   (port 5432)    │
+                          │  ordersdb        │
+                          │  inventorydb     │
+                          │  paymentsdb      │
                           └──────────────────┘
 
     ┌─────────────────── Observability Layer ───────────────────┐
@@ -55,8 +55,8 @@ Built with Spring Boot, Prometheus, Grafana, Jaeger, Alertmanager, and custom Py
     ┌──────────────── Self-Healing Layer ───────────────────────┐
     │                                                           │
     │  self_healer.py ── polls /actuator/health every 30s       │
-    │                    auto-restarts after 2 consecutive       │
-    │                    failures via `docker restart`           │
+    │                    auto-restarts after 2 consecutive      │
+    │                    failures via `docker restart`          │
     │                                                           │
     └───────────────────────────────────────────────────────────┘
 ```
